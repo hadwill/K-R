@@ -20,5 +20,10 @@ int main()
       ++nw;
     }
   }
-  printf("%d %d %d\n", nl, nw, nc);
+  printf("%5s %5s %5s\n", "Lines", "Words", "Chars");
+  int i;
+  for (i = 0; i<17; ++i) /* 3x5chars + blanks = 17 */
+    printf("=");
+  printf("\n");
+  printf("%5d %5d %5d\n", nl, nw, nc);
 }
