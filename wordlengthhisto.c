@@ -50,6 +50,7 @@ int main()
       maxfreq = wlength[i];
 
   /* Make the ordinate and the  points */
+  /* This part turns wlength into an array of zeroes. wlength should not be reused afterwards. */
   for (i = maxfreq; i >= 1; --i) {
     printf("%2d |", i);
     for (j = 0; j <= MAXLENGTH; ++j) {
