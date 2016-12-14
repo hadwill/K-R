@@ -18,14 +18,15 @@ int main()
   nchar = 0;
 
   while ((c = getchar()) !=EOF) {
-    if  (state == IN && (c == ' ' || c == '\t' || c == '\n')) {
+    if  (state == IN && (c == ' ' || c == '\t' || c == '\n' || c == '.' || c == ';' || c == ',' || c == '\'')) {
       state = OUT;
       ++wlength[nchar - 1];
       nchar = 0;
     }
     else if (state == IN)
       ++nchar;
-    else if (state == OUT && (c == ' ' || c == '\t' || c == '\n'))
+    else
+      if (state == OUT && (c == ' ' || c == '\t' || c == '\n' || c == '.' || c == ';' || c == ',' || c == '\''))
       ;
     else {
       state = IN;
