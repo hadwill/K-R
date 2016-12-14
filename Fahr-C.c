@@ -6,8 +6,9 @@
 
 /* print Fahrenheit-Celsius table
    for fahr = 0, 20, ..., 300 */
+float conv(int t);
 
-main()
+int main()
 {
   int fahr;
 
@@ -19,5 +20,15 @@ main()
   printf("\n");
 
   for (fahr = LOWER; fahr <= UPPER; fahr = fahr + STEP)
-    printf("%4d\t%6.2f\n", fahr, (5.0/9.0)*(fahr-32));
+    printf("%4d\t%6.2f\n", fahr, conv(fahr));
+
+  return 0;
 }
+
+float conv(int temp)
+{
+  float c;
+  c = (5.0 / 9.0) * (temp-32);
+  return c;
+}
+    
