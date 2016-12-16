@@ -1,51 +1,54 @@
 #include <stdio.h>
-#define MAXLINE 4
+#define MAXLINE 4 /* Starting at MAXLINE chars (including \n), lines won't be printed */
 
 int getline1(char line[], int maxline);
 void copy(char to[], char from[]);
 
 int main()
 {
+  int c;
   int len;
   int max;
   char line[MAXLINE];
   char longest[MAXLINE];
 
   max = 0;
-  while ((len = getline1(line, MAXLINE)) > 0)
-    if (len > max) {
-      max = len;
-      copy(longest, line);
+  while ((len = getline1(line, MAXLINE)) > 0) {
+    if (line[len-1] == '\n') {
+      if (len > max) {
+  	max = len;
+	copy(longest, line);
+      }
     }
+    else {
+      while ((c = getchar()) != EOF && c != '\n')
+	++len;
+      ++len;
+      if (len > max)
+	max = len;
+    }
+  }
   if (max > 0) {
-    printf("%d\n", max);
-    printf("%s\n", longest);
+    if (max < MAXLINE)
+      printf("%s", longest);
+    else
+      printf("%d\n", max);
   }
   return 0;
 }
+
 
 int getline1(char s[], int lim)
 {
   int c, i;
 
-  for (i = 0; (c=getchar()) != EOF && c != '\n'; ++i) {
-    if (i < lim)
-      s[i] = c;
-    else
-      ;
-  }
-
+  for (i = 0; i < lim-1 && (c = getchar()) !=EOF && c!='\n'; ++i)
+    s[i] = c;
   if (c == '\n') {
-    if (i < lim) {
-      s[i] = c;
-      ++i;
-    }
-    else
-      ++i;
+    s[i] = c;
+    ++i;
   }
-  if (i > lim)
-    s[lim] = '\0';
-  else s[i] = '\0';
+  s[i] = '\0';
   return i;
 }
 
