@@ -23,7 +23,8 @@ int main()
     else {
       while ((c = getchar()) != EOF && c != '\n')
 	++len;
-      ++len;
+      if (c != EOF)
+	++len;
       if (len > max)
 	max = len;
     }
