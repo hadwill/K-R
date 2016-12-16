@@ -1,2 +1,2 @@
 # K-R
-Exercises from K&amp;R as a go through them
+Exercises from K&amp;R as I go through them
