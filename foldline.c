@@ -2,8 +2,6 @@
 
 #define MAXLENGTH 20 /* 81 = 80 non-nl chars + '\n' + '\0' */
 #define MAXLINE 1000
-#define IN 1
-#define OUT 0
 #define TAB 8
 
 int getline1(char line[], int maxline);
@@ -65,20 +63,14 @@ int getline1(char s[], int lim)
    Returns the length of the line, stripped out of its trailing whitespace
 */
 {
-  int lastnw, c, i, j, state;
-  state = OUT;
+  int lastnw, c, i, j;
   lastnw = 0;
   for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; ++i) {
-    if (c == ' ' || c == '\t') {
+    if (c == ' ' || c == '\t')
       s[i] = c;
-      if (state == IN)
-	state = OUT;
-    }
     else {
       lastnw = i;
       s[i] = c;
-      if (state == OUT)
-	state = IN;
     }
   }
   if (c == '\n') {
